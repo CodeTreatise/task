@@ -1,0 +1,13 @@
+section {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  .form {
+    flex: 1 0 50%;
+  }
+
+  .content {
+    flex: 1 0 50%;
+  }
+
+}

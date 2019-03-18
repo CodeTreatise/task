@@ -1,0 +1,106 @@
+<section class="container">
+  <h3>Profile Form</h3>
+  <form #form="ngForm" novalidate>
+
+    <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
+      <label class="control-label" for="firstName">First Name </label>
+      <input #firstName="ngModel" class="form-control" required type="text" id="firstName" name="firstName" placeholder="shivprasad"
+        [(ngModel)]="model.firstName">
+      <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger">first name is required</div>
+      <!-- {{firstName.invalid}} -->
+    </div>
+    <!--First-name End-->
+
+
+    <div class="form-group" [class.has-error]="lastName.invalid && lastName.touched">
+      <label class="control-label" for="lastName">Last Name</label>
+      <input #lastName="ngModel" class="form-control" required type="text" id="lastName" name="lastName" placeholder="murgude"
+        [(ngModel)]="model.lastName">
+      <div *ngIf="lastName.invalid && lastName.touched" class="alert alert-danger">last name is required</div>
+      <!-- {{lastName.invalid}} -->
+    </div>
+    <!--Last Name End-->
+
+    <div class="form-group" [class.has-error]="email.invalid && (email.dirty || email.touched)">
+      <label class="control-label" for="email"> Email</label>
+      <input #email="ngModel" type="text" class="form-control" required id="email" name="email" placeholder="example@domain.com"
+        [(ngModel)]=model.email pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
+      <div *ngIf="!email.valid && email.touched" class="alert alert-danger">email is empty or invalid</div>
+      <!-- {{email.invalid}} -->
+
+    </div>
+    <!-- Email End -->
+
+    <div class="form-check-inline">
+      <label class="form-check-label" class="gender">Gender</label>
+    </div>
+
+    <div class="form-check-inline">
+      <label class="form-check-label" for="male">
+        <input #male="ngModel" type="radio" required class="form-check-input" name="gender" id="male" value="male" [(ngModel)]="model.gender">
+        Male</label>
+    </div>
+
+    <div class="form-check-inline">
+      <label class="form-check-label" for="female">
+        <input #female="ngModel" type="radio" required class="form-check-input" name="gender" id="female" value="female" [(ngModel)]="model.gender">
+        Female</label>
+    </div>
+    <div *ngIf="(!male.valid || !female.valid) && (female.touched || male.touched)" class="alert alert-danger">Please select any gender</div>
+
+    <!--Gender End-->
+
+    <div class="form-group">
+      <label class="form-check-label" for="age">Age</label>
+      <input #age="ngModel" type="number" pattern="^(100|[1-9][0-9]?)$" class="form-control" required name="age" required placeholder="1 to 100" id="age"
+        [(ngModel)]="model.age">
+      <div *ngIf="age.invalid && age.touched" class="alert alert-danger">age may be empty or invalid</div>
+    </div>
+    <!--Age End-->
+
+    <div class="form-group">
+      <label class="form-check-label" for="phone"> Phone<span>(optional)</span></label>
+      <input #phone="ngModel" type="tel" class="form-control" pattern="^0{0,1}[1-9]{1}[0-9]{2}[\s]{0,1}[\-]{0,1}[\s]{0,1}[1-9]{1}[0-9]{6}$" name="Phone" placeholder="XXXXXXXXXX"
+        id="phone" [(ngModel)]="model.phone">
+      <div *ngIf="phone.invalid && phone.touched" class="alert alert-danger">correct phone no.</div>
+    </div>
+    <!--Phone End-->
+
+    <div class="form-row align-items-center">
+      <div class="form-check-inline">
+        <label class="form-check-label">Hobbies: </label>
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label" for="all">
+          <input #all=ngModel type="checkbox" class="form-check-input" name="all" id="all" [(ngModel)]="model.all"
+            >
+          All </label>
+        <span *ngIf=checkAll(form.value)></span>
+      </div>
+    </div>
+    <!--All End-->
+    <div class="form-row align-items-center">
+      <div class="form-check-inline">
+        <label class="form-check-label" for="cricket">
+          <input type="checkbox" class="form-check-input" name="cricket" id="cricket" [(ngModel)]="model.cricket">
+          Cricket</label>
+      </div>
+
+      <div class="form-check-inline">
+        <label class="form-check-label" for="running">
+          <input type="checkbox" class="form-check-input" name="running" id="running" [(ngModel)]="model.running">
+          Running</label>
+      </div>
+
+      <div class="form-check-inline">
+        <label class="form-check-label" for="Swimming">
+          <input type="checkbox" class="form-check-input" name="Swimming" id="Swimming" [(ngModel)]="model.swimming">
+          Swimming</label>
+      </div>
+    </div>
+    <!--hobbies End-->
+    <button class="btn btn-primary align-self-stretch" [disabled]="form.invalid" type="submit" (click)="send(form.value)">Submit</button>
+  </form>
+  <!-- values: {{form.value | json}} -->
+</section>

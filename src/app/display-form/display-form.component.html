@@ -1,0 +1,39 @@
+<h3>Display Profile Data</h3>
+<article class="container">
+  <div class="row">
+    <h5>First Name: </h5>
+    <p> {{data?.firstName }}</p>
+  </div>
+
+  <div class="row">
+    <h5>Last Name: </h5>
+    <p> {{data?.lastName }}</p>
+  </div>
+
+  <div class="row">
+    <h5>Email:</h5>
+    <p> {{data?.email}}</p>
+  </div>
+
+  <div class="row">
+    <h5>Gender:</h5>
+    <p> {{data?.gender}}</p>
+  </div>
+
+  <div class="row">
+    <h5>Age:</h5>
+    <p> {{data?.age}}</p>
+  </div>
+
+  <div class="row">
+    <h5>Phone:</h5>
+    <p> {{data?.Phone}}</p>
+  </div>
+
+  <div class="row">
+    <h5>Hobbies:</h5>
+    <p class="hobie" *ngIf=data?.Swimming>Swimming</p>
+    <p class="hobie" *ngIf=data?.running>running</p>
+    <p class="hobie" *ngIf=data?.cricket>cricket</p>
+  </div>
+</article>
